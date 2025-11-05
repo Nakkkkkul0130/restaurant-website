@@ -12,19 +12,19 @@ const Feedback = () => {
   const testimonials = [
     {
       name: 'John Doe',
-      text: 'The food was incredibly flavorful and perfectly cooked, with ingredients that tasted fresh and delicious.',
+      text: 'The authentic Indian flavors at Indian Lounge are incredible! The biryani and curry dishes remind me of home. Exceptional service and ambiance.',
       stars: 5,
       profilePic: JohnDoePic,
     },
     {
       name: 'Saloni',
-      text: 'Absolutely loved the ambiance and the variety of dishes! Each bite was a delightful experience.',
-      stars: 4,
+      text: 'Best Indian restaurant in the city! The spices are perfectly balanced and the naan is freshly made. The modern lounge atmosphere is perfect for dining.',
+      stars: 5,
       profilePic: salonipic,
     },
     {
       name: 'Michael Johnson',
-      text: 'Fantastic service and the food exceeded my expectations. Will definitely be coming back!',
+      text: 'Amazing experience at Indian Lounge! The tandoori dishes are outstanding and the staff is incredibly welcoming. Will definitely come back!',
       stars: 5,
       profilePic: michaelpic,
     },

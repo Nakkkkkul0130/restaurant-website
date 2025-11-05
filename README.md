@@ -1,6 +1,6 @@
-# Restaurant Website - Full Stack Application
+# Indian Lounge - Full Stack Restaurant Website
 
-A modern, responsive restaurant website with authentication, built using React, Node.js, Express, and MongoDB.
+A modern, responsive restaurant website for Indian Lounge featuring authentic Indian cuisine, complete ordering system, and admin management panel.
 
 ## 🏗️ Project Structure
 
@@ -24,25 +24,34 @@ restaurant-website/
 
 ## ✨ Features
 
-### Frontend
-- **Responsive Design** - Works on all devices
-- **Modern UI/UX** - Tailwind CSS + Framer Motion animations
-- **Authentication** - Login/Signup with JWT
-- **Fast Development** - Optimized for quick loading
-- **Interactive Components** - Dynamic testimonials, menu, cart
+### 🍽️ Restaurant Features
+- **Extensive Menu** - 140+ authentic Indian dishes across 18 categories
+- **Daily Specials** - Rotating daily offers based on date
+- **Order Management** - Complete cart and checkout system
+- **Multiple Payment Options** - UPI, Cash on Delivery, Cards, Net Banking
+- **Order Tracking** - Real-time status updates (Pending → Confirmed → Preparing → Ready → Delivered)
+- **User Dashboard** - Order history, cart management, profile
 
-### Backend
+### 🎨 Frontend
+- **Modern UI/UX** - Orange/red gradient theme with Indian aesthetics
+- **Responsive Design** - Works perfectly on all devices
+- **Framer Motion Animations** - Smooth transitions and effects
+- **Authentication System** - JWT-based login/signup
+- **Role-based Access** - Customer and Admin roles
+- **Restaurant Search** - Find restaurants by location using free APIs
+
+### 🔧 Backend
 - **RESTful API** - Express.js server
-- **Authentication** - JWT-based auth system
-- **Database** - MongoDB with Mongoose
-- **Security** - Password hashing with bcrypt
-- **Validation** - Input validation with express-validator
+- **MongoDB Integration** - User data, orders, menu management
+- **JWT Authentication** - Secure token-based auth
+- **Admin Panel** - Order management, revenue analytics
+- **Password Security** - bcrypt hashing
 
 ## 🚀 Quick Start
 
 ### Prerequisites
 - Node.js (v14 or higher)
-- MongoDB (local or cloud)
+- MongoDB (local or MongoDB Atlas)
 - npm
 
 ### Installation
@@ -58,46 +67,107 @@ restaurant-website/
    install-all.bat
    ```
 
-3. **Start Development (Choose one)**
+3. **Environment Setup**
+   Create `.env` files in both frontend and backend directories:
+   
+   **Backend `.env`:**
+   ```
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_jwt_secret_key
+   ADMIN_EMAIL=admin@indianlounge.com
+   ADMIN_PASSWORD=admin910353
+   ```
+
+4. **Start Development**
    ```bash
    # Full stack development
    start-dev.bat
    
-   # Fast frontend only (recommended for UI development)
+   # Fast frontend only
    dev-fast.bat
-   
-   # Manual start
-   cd frontend && npm run dev
    ```
 
-4. **Access the Application**
+5. **Access the Application**
    - Frontend: http://localhost:3000
    - Backend: http://localhost:5000
 
-## ⚡ Performance Optimizations
+## 🍛 Menu Categories
 
-- **Fast Refresh disabled** for quicker startup
-- **Source maps disabled** in development
-- **Optimized build process**
-- **Axios for API calls** instead of fetch
-- **Environment variables** for configuration
+- **Appetizers** - Samosas, Pakoras, Chaat
+- **Tandoori** - Chicken Tikka, Seekh Kebab, Paneer Tikka
+- **Curries** - Butter Chicken, Dal Makhani, Paneer Butter Masala
+- **Biryani** - Chicken, Mutton, Vegetable, Hyderabadi
+- **Breads** - Naan, Roti, Paratha varieties
+- **Rice** - Jeera Rice, Pulao, Fried Rice
+- **Desserts** - Gulab Jamun, Rasmalai, Kulfi
+- **Beverages** - Lassi, Chai, Fresh Juices
+
+## 👥 User Roles
+
+### Customer Features
+- Browse menu with filters
+- Add items to cart with quantity control
+- Place orders with multiple payment options
+- Track order status in real-time
+- View order history
+- Receive celebration animations on order completion
+- Provide feedback and ratings
+
+### Admin Features
+- **Order Management** - View, update order status
+- **Payment Tracking** - Monitor payment status
+- **Revenue Analytics** - Track daily/monthly earnings
+- **Menu Management** - Add/edit menu items
+- **Customer Management** - View customer orders
+
+## 🎯 Key Pages
+
+- **Home** - Hero section with animations and daily specials
+- **Menu** - Complete menu with 140+ items, filters, cart functionality
+- **How it Works** - 3-step ordering process
+- **Restaurant Search** - Find restaurants using location-based search
+- **Dashboard** - User profile, cart, order history
+- **Admin Panel** - Complete restaurant management system
+- **Contact** - Contact form and restaurant information
+
+## 🔐 Authentication
+
+- **Customer Login** - Standard email/password authentication
+- **Admin Access** - Special admin credentials for management panel
+- **JWT Tokens** - Secure session management
+- **Role-based Routing** - Protected routes based on user role
 
 ## 🛠️ Technologies Used
 
 ### Frontend
 - **React 18** - Modern React with hooks
-- **Tailwind CSS 3** - Utility-first CSS framework
-- **Framer Motion 10** - Animation library
+- **Tailwind CSS 3** - Utility-first styling
+- **Framer Motion 10** - Advanced animations
 - **Axios** - HTTP client for API calls
 - **React Router DOM** - Client-side routing
+- **Context API** - State management
 
 ### Backend
 - **Node.js** - JavaScript runtime
 - **Express.js** - Web framework
 - **MongoDB** - NoSQL database
 - **Mongoose** - MongoDB object modeling
-- **JWT** - JSON Web Tokens for auth
+- **JWT** - JSON Web Tokens
 - **bcryptjs** - Password hashing
+
+## 🎨 Design System
+
+### Colors
+- **Primary**: #fe9e0d (Orange)
+- **Secondary**: #dc2626 (Red)
+- **Accent**: #f97316 (Orange variants)
+- **Background**: Gradient combinations
+
+### Features
+- **Daily Rotating Specials** - 7 different offers
+- **Celebration Animations** - Crackers on order completion
+- **Glassmorphism UI** - Modern glass effects
+- **Responsive Grid** - Mobile-first design
 
 ## 📱 API Endpoints
 
@@ -107,49 +177,11 @@ POST /api/auth/register - Register new user
 POST /api/auth/login    - Login user
 ```
 
-## 🎨 Design System
-
-### Colors
-- **Primary**: #fe9e0d (Orange)
-- **Secondary**: #4c4c4c (Dark Gray)
-- **Accent**: #6a6a6a (Light Gray)
-
-### Responsive Breakpoints
-- **Mobile**: < 640px
-- **Tablet**: 640px - 1024px
-- **Desktop**: > 1024px
-
-## 📄 Pages & Components
-
-### Pages
-- **Home** - Hero section with animations
-- **About** - Restaurant information
-- **Work** - How it works with expandable menu
-- **Testimonials** - Customer feedback carousel
-- **Contact** - Contact form and info
-- **Login** - User authentication
-- **Signup** - User registration
-
-### Key Components
-- **Navbar** - Responsive navigation with auth buttons
-- **Footer** - Social links and contact info
-- **Layout** - Consistent page structure
-
-## 🔧 Development Commands
-
-### Frontend
-```bash
-cd frontend
-npm run dev     # Fast development mode
-npm start       # Standard development
-npm run build   # Production build
+### Orders
 ```
-
-### Backend
-```bash
-cd backend
-npm run dev     # Development with nodemon
-npm start       # Production mode
+GET  /api/orders        - Get user orders
+POST /api/orders        - Create new order
+PUT  /api/orders/:id    - Update order status
 ```
 
 ## 🚀 Deployment
@@ -170,18 +202,27 @@ cd backend
 
 ## 🔒 Security Features
 
+- Environment variables protection (.gitignore)
 - Password hashing with bcrypt
 - JWT token authentication
 - Input validation and sanitization
 - CORS protection
-- Environment variable protection
+- Role-based access control
 
-## 📞 Support
+## 📞 Contact & Support
 
-For support or questions:
-- Email: hello@food.com
-- Phone: 244-53333-7783
+- **Restaurant**: Indian Lounge
+- **Developer**: Made with ❤️ by Nakul
+- **Social Media**: Twitter, LinkedIn, Instagram links in footer
+
+## 🎉 Special Features
+
+- **Daily Specials** - Automatically rotating offers
+- **Order Celebrations** - Fireworks animation on completion
+- **Feedback System** - Customer rating and reviews
+- **Real-time Updates** - Live order status tracking
+- **Mobile Optimized** - Perfect mobile experience
 
 ---
 
-**Built with ❤️ for amazing food experiences! 🍽️✨**
+**Experience authentic Indian cuisine with modern technology! 🍽️✨**

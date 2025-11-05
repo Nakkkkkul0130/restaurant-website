@@ -3,12 +3,25 @@ import { motion } from 'framer-motion';
 import { FiMail, FiSend } from 'react-icons/fi';
 
 const Contact = () => {
-  const [email, setEmail] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Email submitted:', email);
-    setEmail('');
+    console.log('Contact form submitted:', formData);
+    // Here you can send the data to your backend or email service
+    alert('Thank you for your message! We will get back to you soon.');
+    setFormData({ name: '', email: '', message: '' });
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -50,25 +63,47 @@ const Contact = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <div className="flex flex-col sm:flex-row gap-4 bg-white rounded-full p-2 shadow-xl">
-              <div className="flex-1 relative">
-                <FiMail className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <div className="bg-white rounded-2xl p-6 shadow-xl space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Yourmail@gmail.com"
-                  className="w-full pl-12 pr-4 py-4 text-lg border-none outline-none rounded-full bg-transparent"
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="Your Name"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
                   required
                 />
+                <div className="relative">
+                  <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="Your Email"
+                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                    required
+                  />
+                </div>
               </div>
+              <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                placeholder="Your message or question..."
+                rows="4"
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none resize-none"
+                required
+              />
               <motion.button
                 type="submit"
-                className="btn-secondary whitespace-nowrap"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                className="w-full btn-secondary flex items-center justify-center gap-2"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Submit <FiSend />
+                <span>Send Message</span>
+                <FiSend />
               </motion.button>
             </div>
           </motion.form>
@@ -82,9 +117,9 @@ const Contact = () => {
             viewport={{ once: true }}
           >
             {[
-              { title: "Call Us", info: "244-53333-7783", icon: "📞" },
-              { title: "Email Us", info: "hello@food.com", icon: "✉️" },
-              { title: "Visit Us", info: "123 Food Street, City", icon: "📍" }
+              { title: "Call Us", info: "9728647308", icon: "📞" },
+              { title: "Email Us", info: "nakkul.dev@gmail.com", icon: "✉️" },
+              { title: "Visit Us", info: "surya nagar, Rohtak,haryana", icon: "📍" }
             ].map((item, index) => (
               <motion.div
                 key={index}

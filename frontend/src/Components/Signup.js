@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiUser, FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +15,8 @@ const Signup = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const { signup } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -69,21 +69,15 @@ const Signup = () => {
     
     setLoading(true);
     
-    try {
-      const response = await axios.post(`${API_URL}/api/auth/register`, {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password
-      });
-      
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      console.log('Registration successful');
-    } catch (error) {
-      setErrors({ general: error.response?.data?.message || 'Registration failed' });
-    } finally {
-      setLoading(false);
+    const result = await signup(formData.name, formData.email, formData.password);
+    
+    if (result.success) {
+      navigate('/login');
+    } else {
+      setErrors({ general: result.error });
     }
+    
+    setLoading(false);
   };
 
   return (

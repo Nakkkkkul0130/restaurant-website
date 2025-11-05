@@ -26,7 +26,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "dev": "set FAST_REFRESH=false && set GENERATE_SOURCEMAP=false && react-scripts start",
+    "dev": "set FAST_REFRESH=false && set GENERATE_SOURCEMAP=false && set ESLINT_NO_DEV_ERRORS=true && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

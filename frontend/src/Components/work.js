@@ -1,16 +1,7 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import MenuImage from "../Assets/pick-meals-image.png";
-import { FiPlus, FiMinus } from 'react-icons/fi';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 const Work = () => {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-    const handleMenuToggle = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
-
-    const menuChartUrl = "https://d1csarkz8obe9u.cloudfront.net/posterpreviews/food-menu-for-cafeteria%2C-restaurant-%26-canteen-design-template-d565ba9d91e1c5c38ddfa9ccd3d37455_screen.jpg?ts=1697230971";
 
     return (
         <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white/50 to-brown-100/30">
@@ -27,73 +18,45 @@ const Work = () => {
                         How It Works
                     </h1>
                     <p className="text-lg md:text-xl text-accent max-w-4xl mx-auto leading-relaxed">
-                        Our restaurant website makes dining easy and delightful from the moment you visit.
-                        Explore our beautifully crafted menu with high-quality images and detailed descriptions
-                        that will tantalize your taste buds. Easily make reservations through our seamless booking
-                        system, ensuring your table is ready when you arrive.
+                        Finding your perfect restaurant is now easier than ever. Follow these simple steps
+                        to discover amazing dining experiences near you.
                     </p>
                 </motion.div>
 
-                {/* Menu Section */}
-                <motion.div 
-                    className="bg-white rounded-2xl shadow-xl p-8 mb-12"
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    viewport={{ once: true }}
-                >
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-                        <motion.div 
-                            className="flex justify-center"
-                            whileHover={{ scale: 1.05 }}
-                            transition={{ duration: 0.3 }}
+                {/* Steps Section */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    {[
+                        {
+                            step: "01",
+                            title: "🍽️ Browse Menu",
+                            description: "Explore our extensive menu with 140+ authentic Indian dishes across 18 categories. Filter by your preferences and dietary needs."
+                        },
+                        {
+                            step: "02",
+                            title: "🛒 Add to Cart",
+                            description: "Select your favorite dishes, customize quantities, and add them to your cart. View real-time pricing and special offers."
+                        },
+                        {
+                            step: "03",
+                            title: "🎉 Place Order",
+                            description: "Complete your order with multiple payment options. Track your order status from preparation to ready for pickup."
+                        }
+                    ].map((item, index) => (
+                        <motion.div
+                            key={index}
+                            className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-orange-100"
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: index * 0.2 }}
+                            viewport={{ once: true }}
+                            whileHover={{ y: -5 }}
                         >
-                            <img 
-                                src={MenuImage} 
-                                alt="Menu" 
-                                className="w-64 h-64 object-cover rounded-full shadow-lg"
-                            />
+                            <div className="text-6xl font-bold text-orange-200 mb-4">{item.step}</div>
+                            <h3 className="text-2xl font-bold text-primary mb-4">{item.title}</h3>
+                            <p className="text-accent leading-relaxed">{item.description}</p>
                         </motion.div>
-                        
-                        <div className="space-y-6">
-                            <motion.div 
-                                className="flex items-center justify-between cursor-pointer"
-                                onClick={handleMenuToggle}
-                                whileHover={{ scale: 1.02 }}
-                                whileTap={{ scale: 0.98 }}
-                            >
-                                <h2 className="text-3xl font-bold text-secondary">Show Menu</h2>
-                                <motion.div
-                                    animate={{ rotate: isMenuOpen ? 180 : 0 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="text-primary"
-                                >
-                                    {isMenuOpen ? <FiMinus size={24} /> : <FiPlus size={24} />}
-                                </motion.div>
-                            </motion.div>
-                            
-                            <AnimatePresence>
-                                {isMenuOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, height: 0 }}
-                                        animate={{ opacity: 1, height: "auto" }}
-                                        exit={{ opacity: 0, height: 0 }}
-                                        transition={{ duration: 0.5 }}
-                                        className="overflow-hidden"
-                                    >
-                                        <div className="mt-6">
-                                            <img 
-                                                src={menuChartUrl} 
-                                                alt="Menu Chart" 
-                                                className="w-full rounded-lg shadow-lg"
-                                            />
-                                        </div>
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
-                    </div>
-                </motion.div>
+                    ))}
+                </div>
 
                 {/* Fun Fact Section */}
                 <motion.div 
@@ -110,7 +73,7 @@ const Work = () => {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         viewport={{ once: true }}
                     >
-                        Fun Fact: Fastest Delivery
+                        Why Choose Indian Lounge?
                     </motion.h2>
                     <motion.p 
                         className="text-lg md:text-xl leading-relaxed max-w-4xl mx-auto"
@@ -119,10 +82,9 @@ const Work = () => {
                         transition={{ duration: 0.6, delay: 0.4 }}
                         viewport={{ once: true }}
                     >
-                        We pride ourselves on offering the fastest delivery service in the area. Our dedicated team 
-                        ensures that your food arrives piping hot and fresh, often within 30 minutes of placing your order. 
-                        Experience the convenience and reliability of our rapid delivery network, designed to bring you 
-                        exceptional dining experiences right to your doorstep.
+                        Experience authentic Indian cuisine with traditional recipes passed down through generations. 
+                        Our extensive menu features 140+ dishes, daily rotating specials, and a seamless ordering experience 
+                        that brings the taste of India right to your table.
                     </motion.p>
                 </motion.div>
             </div>

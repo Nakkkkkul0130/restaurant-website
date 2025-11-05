@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
 import Home from './Components/home';
 import About from './Components/about';
 import Work from './Components/work';
@@ -8,6 +9,10 @@ import Feedback from './Components/Feedback';
 import Contact from './Components/contact';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
+import RestaurantSearch from './Components/RestaurantSearch';
+import Menu from './Components/Menu';
+import Dashboard from './Components/Dashboard';
+import AdminPanel from './Components/AdminPanel';
 import Layout from './Layout';
 import RegistrationForm from './Components/RegistrationForm';
 import Welcome from './Components/Welcome';
@@ -33,8 +38,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <Routes>
+    <AuthProvider>
+      <div className="App">
+        <Routes>
         {/* Auth Routes (without Layout) */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
@@ -50,6 +56,10 @@ function App() {
               <Contact />
             </>
           } />
+          <Route path="restaurants" element={<RestaurantSearch />} />
+          <Route path="menu" element={<Menu />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="admin" element={<AdminPanel />} />
           <Route path="about" element={<About />} />
           <Route path="work" element={<Work />} />
           <Route path="testimonials" element={<Feedback />} />
@@ -61,8 +71,9 @@ function App() {
           <Route path="cart" element={<Cart cartItems={cartItems} onSellItem={handleSellItem} />} />
           <Route path="client-details/:item" element={<ClientDetails onSubmit={handleClientSubmit} />} />
         </Route>
-      </Routes>
-    </div>
+        </Routes>
+      </div>
+    </AuthProvider>
   );
 }
 

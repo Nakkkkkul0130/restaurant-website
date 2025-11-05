@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { FiMail, FiLock, FiEye, FiEyeOff } from 'react-icons/fi';
-import axios from 'axios';
-
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+import { Link, useNavigate } from 'react-router-dom';
+import { FiMail, FiLock, FiEye, FiEyeOff, FiUser, FiShield } from 'react-icons/fi';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +11,10 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [loginType, setLoginType] = useState('customer');
+  const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -24,18 +26,21 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setError('');
     
-    try {
-      const response = await axios.post(`${API_URL}/api/auth/login`, formData);
-      
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      console.log('Login successful');
-    } catch (error) {
-      console.error('Login failed:', error.response?.data?.message || error.message);
-    } finally {
-      setLoading(false);
+    const result = await login(formData.email, formData.password, loginType);
+    
+    if (result.success) {
+      if (loginType === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+    } else {
+      setError(result.error);
     }
+    
+    setLoading(false);
   };
 
   return (
@@ -72,6 +77,39 @@ const Login = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
+          {error && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+              {error}
+            </div>
+          )}
+          
+          <div className="flex space-x-4 mb-6">
+            <button
+              type="button"
+              onClick={() => setLoginType('customer')}
+              className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 flex items-center justify-center space-x-2 ${
+                loginType === 'customer'
+                  ? 'border-primary bg-primary text-white'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-primary'
+              }`}
+            >
+              <FiUser />
+              <span>Customer</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setLoginType('admin')}
+              className={`flex-1 py-3 px-4 rounded-lg border-2 transition-all duration-300 flex items-center justify-center space-x-2 ${
+                loginType === 'admin'
+                  ? 'border-red-500 bg-red-500 text-white'
+                  : 'border-gray-300 bg-white text-gray-600 hover:border-red-500'
+              }`}
+            >
+              <FiShield />
+              <span>Admin</span>
+            </button>
+          </div>
+          
           <div className="space-y-4">
             <div className="relative">
               <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -110,11 +148,15 @@ const Login = () => {
           <motion.button
             type="submit"
             disabled={loading}
-            className="w-full btn-secondary justify-center"
+            className={`w-full justify-center py-3 px-6 rounded-lg font-semibold transition-all duration-300 ${
+              loginType === 'admin'
+                ? 'bg-red-500 hover:bg-red-600 text-white'
+                : 'btn-secondary'
+            }`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            {loading ? 'Signing in...' : 'Sign In'}
+            {loading ? 'Signing in...' : `Sign In as ${loginType === 'admin' ? 'Admin' : 'Customer'}`}
           </motion.button>
 
           <div className="text-center">
