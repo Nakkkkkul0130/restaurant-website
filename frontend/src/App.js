@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
+import LoadingScreen from './Components/LoadingScreen';
 import Home from './Components/home';
 import About from './Components/about';
 import Work from './Components/work';
@@ -23,6 +24,16 @@ import ClientDetails from './Components/ClientDetails';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleRegister = (formData) => {
     console.log('Registered data:', formData);
@@ -36,6 +47,10 @@ function App() {
     console.log('Client info:', clientInfo);
     console.log('Item being sold:', item);
   };
+
+  if (loading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <AuthProvider>

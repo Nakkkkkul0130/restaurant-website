@@ -69,32 +69,38 @@ const Navbar = () => {
                 </motion.div>
 
                 {/* Desktop Navigation */}
-                <div className="hidden lg:flex items-center space-x-1">
-                    {menuOptions.map((item, index) => (
+                <div className="flex items-center space-x-1">
+                    {/* Explicit Home Button */}
+                    <motion.div
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0 }}
+                    >
+                        <Link to="/">
+                            <motion.div 
+                                className="px-4 py-2 text-gray-700 font-medium"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                Home
+                            </motion.div>
+                        </Link>
+                    </motion.div>
+                    
+                    {menuOptions.slice(1).map((item, index) => (
                         <motion.div
                             key={item.text}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            transition={{ duration: 0.6, delay: (index + 1) * 0.1 }}
                         >
                             <Link to={item.path}>
                                 <motion.div 
-                                    className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 ${
-                                        isActivePath(item.path)
-                                            ? 'text-gray-800 bg-orange-100 backdrop-blur-sm'
-                                            : 'text-gray-700 hover:text-gray-800 hover:bg-gray-100'
-                                    }`}
+                                    className="px-4 py-2 text-gray-700 font-medium"
                                     whileHover={{ scale: 1.05 }}
                                     whileTap={{ scale: 0.95 }}
                                 >
                                     {item.text}
-                                    {isActivePath(item.path) && (
-                                        <motion.div
-                                            className="absolute inset-0 bg-gradient-to-r from-orange-100 to-orange-200 rounded-xl"
-                                            layoutId="activeTab"
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                        />
-                                    )}
                                 </motion.div>
                             </Link>
                         </motion.div>
@@ -150,7 +156,7 @@ const Navbar = () => {
 
 
                     {/* Auth Section */}
-                    <div className="hidden md:flex items-center space-x-3">
+                    <div className="hidden lg:flex items-center space-x-3">
                         {!isAuthenticated ? (
                             <>
                                 <motion.div
