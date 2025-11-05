@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@400;500;600;700&display=swap');
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Reem Kufi', sans-serif;
+    background: linear-gradient(145deg, #d2b48c, #f5deb3);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-black text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply px-8 py-4 bg-primary text-white rounded-full font-semibold transition-all duration-300 hover:bg-orange-600 hover:scale-105 flex items-center justify-center gap-3;
+  }
+  
+  .text-primary-heading {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-secondary leading-tight;
+  }
+  
+  .text-primary-text {
+    @apply text-lg md:text-xl text-accent leading-relaxed;
+  }
+}

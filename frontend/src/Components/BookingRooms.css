@@ -1,0 +1,31 @@
+.booking-rooms-container {
+    text-align: center;
+  }
+  
+  .booking-rooms-container ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .booking-rooms-container li {
+    margin: 20px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .booking-rooms-container h1 {
+    margin-bottom: 20px;
+  }
+  
+  .booking-rooms-container button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .booking-rooms-container button:hover {
+    background-color: #218838;
+  }
+  
