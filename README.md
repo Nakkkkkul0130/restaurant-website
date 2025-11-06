@@ -74,8 +74,6 @@ restaurant-website/
    ```
    MONGODB_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret_key
-   ADMIN_EMAIL=admin@indianlounge.com
-   ADMIN_PASSWORD=admin910353
    ```
 
 4. **Start Development**
@@ -90,17 +88,6 @@ restaurant-website/
 5. **Access the Application**
    - Frontend: http://localhost:3000
    - Backend: http://localhost:5000
-
-## 🍛 Menu Categories
-
-- **Appetizers** - Samosas, Pakoras, Chaat
-- **Tandoori** - Chicken Tikka, Seekh Kebab, Paneer Tikka
-- **Curries** - Butter Chicken, Dal Makhani, Paneer Butter Masala
-- **Biryani** - Chicken, Mutton, Vegetable, Hyderabadi
-- **Breads** - Naan, Roti, Paratha varieties
-- **Rice** - Jeera Rice, Pulao, Fried Rice
-- **Desserts** - Gulab Jamun, Rasmalai, Kulfi
-- **Beverages** - Lassi, Chai, Fresh Juices
 
 ## 👥 User Roles
 
