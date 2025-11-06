@@ -21,7 +21,6 @@ import BookingRooms from './Components/BookingRooms';
 import SpecialOrder from './Components/SpecialOrder';
 import Cart from './Components/Cart';
 import ClientDetails from './Components/ClientDetails';
-import { Analytics } from "@vercel/analytics/next";
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
