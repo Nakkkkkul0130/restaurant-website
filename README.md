@@ -1,7 +1,6 @@
 # Indian Lounge - Full Stack Restaurant Website
 
-A modern, responsive restaurant website for Indian Lounge featuring authentic Indian cuisine, complete ordering system, and admin management panel.
-
+The Indian Lounge project is a full-stack restaurant website built to deliver a complete digital dining experience. It allows users to browse a wide range of authentic Indian dishes, place online orders, track order status in real-time, and manage their profiles through a responsive, user-friendly interface. The admin panel provides restaurant management tools including order tracking, revenue analytics, and menu management. The platform features JWT-based authentication, MongoDB integration, real-time order status updates, and an elegant modern UI with Framer Motion animations and Tailwind CSS styling.
 ## 🏗️ Project Structure
 
 ```
