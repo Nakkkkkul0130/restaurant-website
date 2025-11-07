@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiSend } from 'react-icons/fi';
+import axios from 'axios';
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -9,12 +12,28 @@ const Contact = () => {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Contact form submitted:', formData);
-    // Here you can send the data to your backend or email service
-    alert('Thank you for your message! We will get back to you soon.');
-    setFormData({ name: '', email: '', message: '' });
+    setIsSubmitting(true);
+    
+    try {
+      const response = await axios.post(`${API_URL}/api/contact/send`, formData);
+      
+      if (response.data.success) {
+        alert('Thank you for your message! We will get back to you soon.');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        alert('Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      console.error('Error details:', error.response?.data || error.message);
+      alert(`Failed to send message: ${error.response?.data?.message || error.message}`);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -98,11 +117,12 @@ const Contact = () => {
               />
               <motion.button
                 type="submit"
-                className="w-full btn-secondary flex items-center justify-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                className="w-full btn-secondary flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                <span>Send Message</span>
+                <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
                 <FiSend />
               </motion.button>
             </div>

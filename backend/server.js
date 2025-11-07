@@ -10,7 +10,8 @@ const PORT = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://indian-lounge.vercel.app'
+    'https://indian-lounge.vercel.app',
+    'https://restaurant-frontend-wheat.vercel.app'
   ],
   credentials: true
 }));
@@ -25,6 +26,7 @@ app.get('/api/test', (req, res) => {
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/restaurants', require('./routes/restaurants'));
 app.use('/api/orders', require('./routes/orders'));
+app.use('/api/contact', require('./routes/contact'));
 
 // MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
