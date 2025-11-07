@@ -1,7 +1,6 @@
 # Indian Lounge - Full Stack Restaurant Website
 
-A modern, responsive restaurant website for Indian Lounge featuring authentic Indian cuisine, complete ordering system, and admin management panel.
-
+The Indian Lounge project is a full-stack restaurant website built to deliver a complete digital dining experience. It allows users to browse a wide range of authentic Indian dishes, place online orders, track order status in real-time, and manage their profiles through a responsive, user-friendly interface. The admin panel provides restaurant management tools including order tracking, revenue analytics, and menu management. The platform features JWT-based authentication, MongoDB integration, real-time order status updates, and an elegant modern UI with Framer Motion animations and Tailwind CSS styling.
 ## 🏗️ Project Structure
 
 ```
@@ -74,8 +73,6 @@ restaurant-website/
    ```
    MONGODB_URI=your_mongodb_connection_string
    JWT_SECRET=your_jwt_secret_key
-   ADMIN_EMAIL=admin@indianlounge.com
-   ADMIN_PASSWORD=admin910353
    ```
 
 4. **Start Development**
@@ -90,17 +87,6 @@ restaurant-website/
 5. **Access the Application**
    - Frontend: http://localhost:3000
    - Backend: http://localhost:5000
-
-## 🍛 Menu Categories
-
-- **Appetizers** - Samosas, Pakoras, Chaat
-- **Tandoori** - Chicken Tikka, Seekh Kebab, Paneer Tikka
-- **Curries** - Butter Chicken, Dal Makhani, Paneer Butter Masala
-- **Biryani** - Chicken, Mutton, Vegetable, Hyderabadi
-- **Breads** - Naan, Roti, Paratha varieties
-- **Rice** - Jeera Rice, Pulao, Fried Rice
-- **Desserts** - Gulab Jamun, Rasmalai, Kulfi
-- **Beverages** - Lassi, Chai, Fresh Juices
 
 ## 👥 User Roles
 
